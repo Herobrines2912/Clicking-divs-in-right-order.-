@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>game</title>
+        <meta charset="UTF-8">
+        <style>
+            body,
+            html {
+            height: 100%;
+            background: antiquewhite
+            }
+    
+            * {
+            margin: 0;
+            padding: 0;
+            }
+    
+            div{
+                background-color: white;
+                cursor: pointer;
+                border: 2px solid black;
+                border-collapse: collapse;
+                
+            }
+    
+            .dev{
+                height: 50px;
+                width: 50px;
+                border: 7px solid black;
+                margin: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div data-index="0" class="dev one"></div>
+        <div data-index="1" class="dev two"></div>
+        <div data-index="2" class="dev three"></div>
+        <div data-index="3" class="dev four"></div>
+        <div data-index="4" class="dev five"></div>
+        <div data-index="5" class="dev six"></div>
+        <div data-index="6" class="dev seven"></div>
+        <div data-index="7" class="dev eight"></div>
+        <div data-index="8" class="dev nine"></div>
+        <script>
+            const divs = document.querySelectorAll("div");
+                for (let i = 0; i < divs.length; i++) {
+                divs[i].addEventListener("click", checkOrder);
+                }
+
+            const orderArray = [2, 3, 0, 1, 4, 5, 7, 6, 8] ;
+            let nextIndex = 0;
+
+        function checkOrder() {
+        const divIndex = parseInt(this.dataset.index);
+        if (divIndex !== orderArray[nextIndex]) {
+            alert("Incorrect - restarting...");
+            resetDivs();
+            nextIndex = 0;
+            return;
+        }
+        this.style.backgroundColor = "lightgreen";
+
+        if(nextIndex === divs.length - 1){
+            alert("Congrats, you won! The correct order was: " + orderArray);
+            resetDivs();
+        }
+        nextIndex++;
+        }
+
+        function resetDivs() {
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].style.backgroundColor = "white";
+        }}
+    </script> 
+    </body>
+</html>
